@@ -50,6 +50,12 @@
                                     <i class="material-icons blue-text text-accent-3">remove_red_eye</i>
                                 </span>
                             </a>
+                            {{-- Endereçar --}}
+                            <a href="{{ route('produto.enderecamento', [$product->id]) }}" title="View">
+                                <span>
+                                    <i class="material-icons blue-text text-accent-3">remove_red_eye</i>
+                                </span>
+                            </a>
                              {{-- Excluir --}}
                              <form action="{{ route('product.delete', [$product->id]) }}" method="POST"
                                 style="display: inline;" title="Delete">

@@ -130,7 +130,10 @@ class ProductController extends Controller
 
     }
 
-    public function enderecar(){
-        return view('admin.products.enderecamento');
+    public function enderecar(Request $product){
+
+        $product = Product::find($product);
+        return view('admin.products.enderecamento')
+            ->with('produtos', $product);
     }
 }

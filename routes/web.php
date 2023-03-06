@@ -30,4 +30,4 @@ Route::delete('/product/{product}',     [ProductController::class,'destroy'])->n
 // MOVIMENTAÇÃO DE ESTOQUE
 Route::get('/produto-transacao',     [ProductController::class,'transacao'])->name('produto.transacao');
 Route::post('/produto-movimentacao', [ProductController::class,'gravarTransacao'])->name('produto.movimentacao');
-Route::get('/enderecamento', [ProductController::class, 'enderecar'])->name('produto.enderecamento');
+Route::get('/enderecamento/{product}', [ProductController::class, 'enderecar'])->name('produto.enderecamento');

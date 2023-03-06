@@ -2,9 +2,10 @@
 
 @section('conteudo-principal')
 
-<h4>Endereçamento de Materias</h4>
+<h5>Endereçamento de Materias</h5>
 
 <form action="#" method="post">
+    <input type="text" name="description" id="description" value="{{$product->description}}">
     <input type="text" name="address" id="address">
 </form>
 
