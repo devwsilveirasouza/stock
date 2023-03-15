@@ -2,7 +2,7 @@
 
 <style>
     table {
-        font-size: 12px;
+        font-size: 10px;
     }
 </style>
 
@@ -51,9 +51,9 @@
                                 </span>
                             </a>
                             {{-- Endereçar --}}
-                            <a href="{{ route('produto.enderecamento', [$product->id]) }}" title="View">
+                            <a href="{{ route('produto.enderecamento', [$product->id]) }}" title="Address">
                                 <span>
-                                    <i class="material-icons blue-text text-accent-3">remove_red_eye</i>
+                                    <i class="material-icons black-text text-accent-3">add_location</i>
                                 </span>
                             </a>
                              {{-- Excluir --}}

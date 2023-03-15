@@ -21,6 +21,60 @@ class ProductController extends Controller
         return view('admin.products.index')
             ->with('products', $products);
     }
+    // --- EM DESENVOLVIMENTO - / 15/03/2023 - WELLINGTON
+    // CARREGAR O DATATABLE COM PAGINAÇÃO AJAX
+    public function getData(Request $request){
+
+        $draw = $request->get('draw');
+        $start = $request->get('start');
+        $rowperpage = $request->get('length');
+
+        $columnIndex_arr = $request->get('order');
+        $columnName_arr = $request->get('columns');
+        $order_arr = $request->get('order');
+        $search_arr = $request->get('search');
+
+        $columnIndex = $columnIndex_arr[0]['column'];
+        $columnName = $columnName_arr[$columnIndex]['data'];
+        $columnSortOrder = $order_arr[0]['dir'];
+        $serchValue = $search_arr['value'];
+
+        $totalRecords = Product::select('count(*) as allcount')->count();
+
+        $totalRecordsWithFilter = Product::select('count(*) as allcount')
+            ->where('description', 'like', '%'. $searchValue .'%')
+            ->orWhere('address', 'like', '%' . $searchValue . '%')
+            ->count();
+
+        $records = Product::orderBy($columnName, $columnSortOrder)
+        ->where('description', 'like', '%'. $searchValue .'%')
+        ->orWhere('address', 'like', '%' . $searchValue . '%')
+        ->select('products.*')
+        ->skip($start)
+        ->take($rowperpage)
+        ->get();
+
+        $data_arr = array();
+        foreach($records as $product){
+            $id = $product->id;
+            $description = $produtc->description;
+
+        $data_arr[] = array(
+            "id" => $id,
+            "description => $description"
+        );
+        }
+
+        $response = array(
+            "draw"                  => intval($draw),
+            "iTotalRecords"         => $totalRecords,
+            "iTotalDisplayRecords"  => $totalRecordsWithFilter,
+            "aaData"                => $data_arr
+        );
+        echo json_encode($response);
+        exit;
+    }
+    // --- FIM DO METODO ---
 
     /**
      * Método responsável por chamar o formulário de cadastro.
