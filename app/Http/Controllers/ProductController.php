@@ -16,10 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate();
+        // $products = Product::paginate();
         // dd($products);
-        return view('admin.products.index')
-            ->with('products', $products);
+        return view('admin.products.index');
+
     }
     // --- EM DESENVOLVIMENTO - / 15/03/2023 - WELLINGTON
     // CARREGAR O DATATABLE COM PAGINAÇÃO AJAX
@@ -37,7 +37,7 @@ class ProductController extends Controller
         $columnIndex = $columnIndex_arr[0]['column'];
         $columnName = $columnName_arr[$columnIndex]['data'];
         $columnSortOrder = $order_arr[0]['dir'];
-        $serchValue = $search_arr['value'];
+        $searchValue = $search_arr['value'];
 
         $totalRecords = Product::select('count(*) as allcount')->count();
 

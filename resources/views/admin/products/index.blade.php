@@ -1,85 +1,63 @@
 @extends('layouts.principal')
 
-<style>
-    table {
-        font-size: 10px;
-    }
-</style>
+
+{{-- Script Bootstrap DataTable CSS --}}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {{-- Script Datatable CSS --}}
+<link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.css" rel="stylesheet" />
 
 @section('conteudo-principal')
-    <h4>Produtos Cadastrados</h4>
-    <div class="right-align">
-        <a class="btn-flat waves-effect light-blue darken-2" href="{{ route('product.create') }}">Novo</a>
+    <div class="center-align mt-2">
+        <div class="row col-md-2 float-end">
+            <a class="btn btn-primary" href="{{ route('product.create') }}">+ Produto</a>
+        </div>
     </div>
 
     <section class="section">
 
-        <table class="highlight">
-            <thead>
-                <tr>
-                    <th>Código:</th>
-                    {{-- <th>PN:</th> --}}
-                    <th>Descrição:</th>
-                    <th>Marca:</th>
-                    <th>Model:</th>
-                    <th>UM:</th>
-                    {{-- <th>Categoria:</th> --}}
-                    {{-- <th>Sub-Categoria:</th> --}}
-                    <th>Local:</th>
-                    {{-- <th>Est. Min:</th> --}}
-                    <th>Ação:</th>
-                </tr>
-            </thead>
+        <h3 class="text-center">Produtos</h3>
 
-            <tbody>
-                @forelse($products as $product)
-                    <tr>
-                        <td>{{ $product->code }}</td>
-                        {{-- <td>{{ $product->partNumber }}</td> --}}
-                        <td>{{ $product->description }}</td>
-                        <td>{{ $product->brand }}</td>
-                        <td>{{ $product->model }}</td>
-                        <td>{{ $product->um }}</td>
-                        {{-- <td>{{ $product->category }}</td> --}}
-                        {{-- <td>{{ $product->subCategory }}</td> --}}
-                        <td>{{ $product->address }}</td>
-                        {{-- <td>{{ $product->minQuantity }}</td> --}}
-                        <td class="right-align">{{-- Ver --}}
-                            <a href="{{ route('product.show', [$product->id]) }}" title="View">
-                                <span>
-                                    <i class="material-icons blue-text text-accent-3">remove_red_eye</i>
-                                </span>
-                            </a>
-                            {{-- Endereçar --}}
-                            <a href="{{ route('produto.enderecamento', [$product->id]) }}" title="Address">
-                                <span>
-                                    <i class="material-icons black-text text-accent-3">add_location</i>
-                                </span>
-                            </a>
-                             {{-- Excluir --}}
-                             <form action="{{ route('product.delete', [$product->id]) }}" method="POST"
-                                style="display: inline;" title="Delete">
-                                @csrf
-                                @method('DELETE')
+        <div class="container-fluid">
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <table id="datatable" class="table">
+                                <thead>
+                                    <th>Código</th>
+                                    <th>Descrição</th>
+                                    <th>Opções</th>
+                                </thead>
 
-                                <button style="border:0;background:transparent;" type="submit">
-                                    <span style="cursor: pointer;">
-                                        <i class="material-icons red-text text-accent-3">delete_forever</i>
-                                    </span>
-                                </button>
+                                <tbody>
+                                    <tr>
+                                        <td>35</td>
+                                        <th>Arroz Tio Joao 5kg</th>
+                                        <th><a class="btn btn-warning">Editar</a>
+                                            <a class="btn btn-danger">Deletar</a>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td>Não há produtos cadastrados.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-            {{-- PAGINAÇÃO --}}
-            {{ $products->links() }}
+        {{-- Scripts DataTable Js --}}
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+
+        <script type="text/javascript">
+            $('#datatable').DataTable({});
+        </script>
 
     </section>
 @endsection

@@ -5,21 +5,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', HomeController::class);
 Route::resource('/user', UserController::class);
 // PRODUTOS ADM
 Route::get('/product',                  [ProductController::class,'index'])->name('product.index');
+Route::get('/product-getData',          [ProductController::class,'getData'])->name('product.getData');
 Route::get('/product.create',           [ProductController::class,'create'])->name('product.create');
 Route::post('/product.store',           [ProductController::class,'store'])->name('product.store');
 Route::get('/product/{product}/show',   [ProductController::class,'show'])->name('product.show');
