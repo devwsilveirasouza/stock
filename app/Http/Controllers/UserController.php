@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return 'Olá Povo';
+        return view("admin.users.index");
     }
 
     /**
@@ -41,10 +41,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\c  $c
+     * @param  \App\Models\ id  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(c $c)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\c  $c
+     * @param  \App\Models\ id  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(c $c)
+    public function edit(Request $id)
     {
         //
     }
@@ -64,10 +64,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\c  $c
+     * @param  \App\Models\ id  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, c $c)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\c  $c
+     * @param  \App\Models\id  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(c $c)
+    public function destroy($id)
     {
         //
     }

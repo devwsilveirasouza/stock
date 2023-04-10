@@ -57,12 +57,13 @@ class ProductController extends Controller
         $data_arr = array();
         foreach($records as $product){
             $id = $product->id;
-            $description = $produtc->description;
+            $description = $product->description;
 
         $data_arr[] = array(
             "id" => $id,
             "description => $description"
         );
+
         }
 
         $response = array(
@@ -175,11 +176,13 @@ class ProductController extends Controller
         if($transacao == "Entrada") {
             $produto = EntradaProduto::create($request->all());
 
-            return redirect()->back();
+            return redirect()->route('product.index')
+                ->with('produto', $produto);
         } else {
             $produto = SaidaProduto::create($request->all());
 
-            return redirect()->back();
+            return redirect()->route('product.index')
+                ->with('produto', $produto);
         }
 
     }
